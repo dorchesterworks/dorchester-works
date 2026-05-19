@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Dorchester Works — App studio and marketing consultancy founded by a Dorchester native. Building patriotic mobile games and helping small businesses grow."/>
+  <meta name="theme-color" content="#020918"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dorchester Works"/>
+  <meta property="og:description" content="App studio and marketing consultancy founded by a Dorchester native. Celebrating 250 years of American independence."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://dorchesterworks.com"/>
+
+  <!-- Security headers via meta -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"/>
+
+  <title>Dorchester Works — App Studio & Marketing Consultancy</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ── Reset & Tokens ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #020918;
+      --navy2:   #0A1650;
+      --navy3:   #102070;
+      --crimson: #C41230;
+      --crimson2:#8F0A20;
+      --gold:    #FFD700;
+      --gold2:   #E5B800;
+      --white:   #FFFFFF;
+      --off:     #F5F0E8;
+      --muted:   rgba(245,240,232,0.82);
+      --faint:   rgba(245,240,232,0.45);
+      --max:     1160px;
+      --rad:     4px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--off);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: clamp(1rem, 2.2vw, 1.1rem);
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      background-image: linear-gradient(160deg, #020918 0%, #0A1650 50%, #1A0A18 100%);
+      background-attachment: fixed;
+    }
+
+    /* ── Skip nav (accessibility) ───────────────────────────────────── */
+    .skip-nav {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 10px 20px;
+      font-weight: 700;
+      border-radius: 0 0 4px 4px;
+      z-index: 9999;
+      text-decoration: none;
+      font-family: sans-serif;
+      font-size: 0.9rem;
+      transition: top 0.2s;
+    }
+    .skip-nav:focus { top: 0; }
+
+    /* ── Focus ──────────────────────────────────────────────────────── */
+    :focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    /* ── Typography ─────────────────────────────────────────────────── */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      line-height: 1.15;
+    }
+    h1 { font-size: clamp(2.8rem, 7vw, 5rem); }
+    h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+    h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); }
+    p  { max-width: 68ch; }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    img { display: block; max-width: 100%; }
+
+    /* ── Layout helpers ─────────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    .section {
+      padding: clamp(72px, 10vw, 120px) 0;
+    }
+
+    /* ── Star field canvas ──────────────────────────────────────────── */
+    #starCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.8;
+    }
+
+    /* ── NAV ────────────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 clamp(20px,5vw,60px);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(2,9,24,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,215,0,0.25);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-star {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-logo-text span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(20px, 3vw, 40px);
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-family: sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--crimson);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 2px;
+      border: 1px solid var(--gold) !important;
+      font-weight: 700 !important;
+    }
+    .nav-cta:hover { background: var(--crimson2) !important; text-decoration: none !important; }
+
+    /* Mobile nav toggle */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--off);
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; flex-direction: column; gap: 5px; }
+      .nav-toggle span {
+        display: block; width: 24px; height: 2px;
+        background: var(--off); border-radius: 2px;
+        transition: all 0.3s;
+      }
+      .nav-links {
+        position: fixed;
+        top: 72px; left: 0; right: 0;
+        background: rgba(6,14,40,0.97);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        padding: 32px 24px;
+        gap: 24px;
+        border-bottom: 1px solid rgba(245,197,24,0.15);
+        transform: translateY(-110%);
+        transition: transform 0.35s ease;
+      }
+      .nav-links.open { transform: translateY(0); }
+      .nav-links a { font-size: 1rem; }
+    }
+
+    /* ── HERO ───────────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 72px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 65% 55% at 28% 50%, rgba(10,22,80,0.95) 0%, transparent 70%),
+                  radial-gradient(ellipse 55% 65% at 82% 38%, rgba(196,18,48,0.2) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-inner p { margin: 0 auto; }
+    }
+
+    .hero-eyebrow {
+      font-family: sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-eyebrow { justify-content: center; }
+    }
+
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(245,197,24,0.3);
+      max-width: 40px;
+    }
+
+    .hero h1 {
+      color: var(--white);
+      margin-bottom: 24px;
+      text-shadow: 0 0 80px rgba(255,215,0,0.35), 0 2px 0 rgba(0,0,0,0.5);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .hero-actions { justify-content: center; }
+    }
+
+    /* ── Buttons ─────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 2px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--crimson);
+      color: var(--white);
+      border-color: var(--gold);
+      box-shadow: 0 4px 28px rgba(196,18,48,0.5), 0 0 0 1px rgba(255,215,0,0.15);
+    }
+    .btn-primary:hover {
+      background: var(--crimson2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(196,18,48,0.6), 0 0 0 1px rgba(255,215,0,0.25);
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--gold);
+      border-color: rgba(245,197,24,0.4);
+    }
+    .btn-secondary:hover {
+      background: rgba(245,197,24,0.08);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      text-decoration: none;
+      color: var(--gold);
+    }
+
+    /* ── Hero star visual ────────────────────────────────────────────── */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-star-wrap {
+      position: relative;
+      width: clamp(240px, 35vw, 420px);
+      height: clamp(240px, 35vw, 420px);
+    }
+
+    .hero-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(255,215,0,0.25);
+      animation: ringPulse 4s ease-in-out infinite;
+    }
+    .hero-ring:nth-child(2) {
+      inset: 12%;
+      border-color: rgba(196,18,48,0.35);
+      animation-delay: 1s;
+    }
+    .hero-ring:nth-child(3) {
+      inset: 24%;
+      border-color: rgba(255,215,0,0.18);
+      animation-delay: 2s;
+    }
+
+    @keyframes ringPulse {
+      0%,100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
+    }
+
+    .hero-star-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 0 50px rgba(255,215,0,0.6)) drop-shadow(0 0 20px rgba(255,215,0,0.4));
+      animation: starFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes starFloat {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero-tagline {
+      position: absolute;
+      bottom: -32px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-family: sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      color: var(--faint);
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .hero-visual { display: none; }
+    }
+
+    /* ── Divider ────────────────────────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(245,197,24,0.2), transparent);
+      position: relative;
+      z-index: 1;
+    }
+
+    .divider-star {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--navy);
+      padding: 0 16px;
+    }
+
+    /* ── Email capture ──────────────────────────────────────────────── */
+    .email-bar {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(10,22,80,0.98) 0%, rgba(196,18,48,0.22) 100%);
+      border-top: 1px solid rgba(255,215,0,0.28);
+      border-bottom: 1px solid rgba(255,215,0,0.28);
+      padding: clamp(40px,6vw,64px) 0;
+    }
+
+    .email-bar-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .email-bar-inner { grid-template-columns: 1fr; gap: 28px; }
+    }
+
+    .email-bar h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .email-bar p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 48ch;
+    }
+
+    .email-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .email-row {
+      display: flex;
+      gap: 0;
+    }
+
+    .email-input {
+      flex: 1;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(245,197,24,0.25);
+      border-right: none;
+      border-radius: 2px 0 0 2px;
+      color: var(--white);
+      font-family: 'Source Serif 4', serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .email-input::placeholder { color: var(--faint); }
+    .email-input:focus { border-color: var(--gold); }
+
+    .email-btn {
+      padding: 14px 24px;
+      background: var(--gold);
+      color: var(--navy);
+      border: 1px solid var(--gold);
+      border-radius: 0 2px 2px 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .email-btn:hover { background: var(--gold2); }
+
+    .email-note {
+      font-family: sans-serif;
+      font-size: 0.72rem;
+      color: var(--faint);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Section headers ────────────────────────────────────────────── */
+    .section-header {
+      margin-bottom: clamp(40px, 6vw, 64px);
+    }
+
+    .section-eyebrow {
+      font-family: sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.75;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(245,197,24,0.2);
+      max-width: 80px;
+    }
+
+    .section-header h2 { color: var(--white); margin-bottom: 16px; }
+    .section-header p { color: var(--muted); }
+
+    /* ── Games section ──────────────────────────────────────────────── */
+    .games-section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .game-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 64px);
+      align-items: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,215,0,0.18);
+      border-radius: var(--rad);
+      padding: clamp(32px, 5vw, 56px);
+      margin-bottom: 32px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .game-card:hover {
+      border-color: rgba(255,215,0,0.45);
+      background: rgba(255,255,255,0.07);
+    }
+
+    @media (max-width: 768px) {
+      .game-card { grid-template-columns: 1fr; }
+    }
+
+    .game-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(165,28,48,0.2);
+      border: 1px solid rgba(165,28,48,0.4);
+      border-radius: 2px;
+      padding: 4px 12px;
+      font-family: sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #FF9090;
+      margin-bottom: 16px;
+    }
+
+    .game-card h3 { color: var(--white); margin-bottom: 12px; }
+    .game-card p  { color: var(--muted); margin-bottom: 24px; font-size: 0.95rem; }
+
+    .game-stats {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .game-stat {
+      text-align: center;
+    }
+
+    .game-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+
+    .game-stat-label {
+      font-family: sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    .game-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .game-icon-box {
+      width: clamp(160px, 22vw, 240px);
+      height: clamp(160px, 22vw, 240px);
+      background: linear-gradient(135deg, var(--navy2) 0%, #2A0610 100%);
+      border: 2px solid rgba(255,215,0,0.35);
+      border-radius: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 16px 56px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,215,0,0.2), 0 0 40px rgba(255,215,0,0.1);
+    }
+
+    .game-icon-star { width: 80px; height: 80px; }
+
+    .game-icon-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    /* ── Consulting section ─────────────────────────────────────────── */
+    .consulting-section {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(180deg, transparent 0%, rgba(15,30,88,0.3) 50%, transparent 100%);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,215,0,0.16);
+      border-radius: var(--rad);
+      padding: clamp(24px, 4vw, 36px);
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(255,215,0,0.45);
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-4px);
+    }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(255,215,0,0.15);
+      border: 1px solid rgba(255,215,0,0.35);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-size: 1.3rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 100%;
+    }
+
+    /* ── About section ──────────────────────────────────────────────── */
+    .about-section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .about-inner { grid-template-columns: 1fr; }
+    }
+
+    .about-aside {
+      position: sticky;
+      top: 100px;
+    }
+
+    .about-shield {
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--navy2) 0%, var(--navy) 100%);
+      border: 1px solid rgba(255,215,0,0.28);
+      border-radius: var(--rad);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 40px;
+      margin-bottom: 20px;
+    }
+
+    .about-shield-star { width: 100px; height: 100px; }
+
+    .about-shield-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .about-shield-sub {
+      font-family: sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    .about-location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-family: sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+    }
+
+    .about-content h2 { color: var(--white); margin-bottom: 20px; }
+
+    .about-content p {
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-size: 1rem;
+      line-height: 1.85;
+      max-width: 100%;
+    }
+
+    .about-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .pillar {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .pillar-star {
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .pillar-text h4 {
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .pillar-text p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0;
+      max-width: 100%;
+    }
+
+    /* ── Boston section ─────────────────────────────────────────────── */
+    .boston-bar {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(196,18,48,0.2) 0%, rgba(10,22,80,0.7) 100%);
+      border-top: 1px solid rgba(255,215,0,0.2);
+      border-bottom: 1px solid rgba(255,215,0,0.2);
+      padding: clamp(40px,6vw,64px) 0;
+      text-align: center;
+    }
+
+    .boston-bar blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-style: italic;
+      color: var(--off);
+      max-width: 700px;
+      margin: 0 auto 16px;
+      line-height: 1.5;
+    }
+
+    .boston-bar cite {
+      font-family: sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      font-style: normal;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: rgba(0,0,0,0.4);
+      border-top: 1px solid rgba(255,215,0,0.2);
+      padding: clamp(48px, 7vw, 80px) 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: clamp(32px, 5vw, 64px);
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+    }
+
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-brand-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      max-width: 36ch;
+      margin-bottom: 20px;
+    }
+
+    .footer-col h4 {
+      font-family: sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .footer-col ul a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-copy {
+      font-family: sans-serif;
+      font-size: 0.78rem;
+      color: var(--faint);
+      letter-spacing: 0.5px;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-legal a {
+      font-family: sans-serif;
+      font-size: 0.78rem;
+      color: var(--faint);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: var(--gold); }
+
+    /* ── Animations ─────────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .fade-up-1 { animation-delay: 0.1s; }
+    .fade-up-2 { animation-delay: 0.25s; }
+    .fade-up-3 { animation-delay: 0.4s; }
+    .fade-up-4 { animation-delay: 0.55s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Cookie banner ──────────────────────────────────────────────── */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(6,14,40,0.97);
+      border-top: 1px solid rgba(245,197,24,0.2);
+      padding: 16px clamp(20px,5vw,60px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      backdrop-filter: blur(12px);
+    }
+
+    .cookie-banner p {
+      font-family: sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .cookie-banner a { color: var(--gold); }
+
+    .cookie-btn {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 10px 24px;
+      border-radius: 2px;
+      font-family: sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .cookie-banner[hidden] { display: none; }
+  </style>
+</head>
+
+<body>
+
+<!-- Skip navigation -->
+<a href="#main" class="skip-nav">Skip to main content</a>
+
+<!-- Star canvas -->
+<canvas id="starCanvas" aria-hidden="true"></canvas>
+
+<!-- ── NAV ───────────────────────────────────────────────────────────── -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="/" class="nav-logo" aria-label="Dorchester Works home">
+    <svg class="nav-logo-star" viewBox="0 0 40 40" aria-hidden="true">
+      <defs>
+        <radialGradient id="ns" cx="40%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#FFF8C0"/>
+          <stop offset="45%" stop-color="#F5C518"/>
+          <stop offset="100%" stop-color="#A87208"/>
+        </radialGradient>
+      </defs>
+      <polygon points="20,3 24.5,13.5 36,13.5 27,20.5 30.5,31 20,24.5 9.5,31 13,20.5 4,13.5 15.5,13.5" fill="url(#ns)"/>
+    </svg>
+    <span class="nav-logo-text">Dorchester <span>Works</span></span>
+  </a>
+
+  <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" id="navToggle">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="#games">Games</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- ── MAIN ──────────────────────────────────────────────────────────── -->
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <p class="hero-eyebrow fade-up fade-up-1" aria-label="Founded by a Dorchester Native · Est. 2026">
+            Founded by a Dorchester Native · Est. 2026
+          </p>
+          <h1 id="hero-heading" class="fade-up fade-up-2">
+            Built on the <em>Heights.</em><br>Made for the Nation.
+          </h1>
+          <p class="hero-desc fade-up fade-up-3">
+            Dorchester Works is a mobile app game studio founded by a
+            Dorchester native — building patriotic games that celebrate
+            250 years of American independence.
+          </p>
+          <div class="hero-actions fade-up fade-up-4">
+            <a href="#games" class="btn btn-primary">★ Our Games</a>
+            <a href="#contact" class="btn btn-secondary">Join the List →</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-star-wrap">
+            <div class="hero-ring"></div>
+            <div class="hero-ring"></div>
+            <div class="hero-ring"></div>
+            <svg class="hero-star-svg" viewBox="0 0 200 200">
+              <defs>
+                <radialGradient id="hs" cx="38%" cy="28%" r="72%">
+                  <stop offset="0%" stop-color="#FFF8C0"/>
+                  <stop offset="40%" stop-color="#F5C518"/>
+                  <stop offset="100%" stop-color="#A87208"/>
+                </radialGradient>
+                <filter id="hglow">
+                  <feGaussianBlur stdDeviation="6" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- Glow -->
+              <polygon points="100,18 118,72 176,72 130,106 148,160 100,126 52,160 70,106 24,72 82,72"
+                fill="#F5C518" opacity="0.2" filter="url(#hglow)"/>
+              <!-- Star -->
+              <polygon points="100,20 117,70 174,70 129,104 146,158 100,124 54,158 71,104 26,70 83,70"
+                fill="url(#hs)"/>
+              <!-- Sheen -->
+              <polygon points="100,38 112,72 150,72 120,92 132,126 100,106 68,126 80,92 50,72 88,72"
+                fill="white" opacity="0.13"/>
+              <!-- 1776 text -->
+              <text x="100" y="176" text-anchor="middle"
+                font-family="Georgia,serif" font-size="18" font-weight="900"
+                fill="#F5C518" letter-spacing="2" opacity="0.8">1776</text>
+            </svg>
+            <p class="hero-tagline">A Product of a Dorchester Native · Est. 2026</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Email capture -->
+  <section class="email-bar" aria-labelledby="email-heading" id="contact">
+    <div class="container">
+      <div class="email-bar-inner">
+        <div>
+          <h2 id="email-heading">Join the Patriot List</h2>
+          <p>
+            Be first to know when new games launch, get early access to
+            category packs, and receive weekly American history content —
+            free, every week.
+          </p>
+        </div>
+        <div>
+          <form class="email-form" action="#" method="post"
+                aria-label="Email signup form"
+                onsubmit="handleEmailSubmit(event)">
+            <div class="email-row">
+              <label for="emailInput" class="sr-only">Your email address</label>
+              <input
+                type="email"
+                id="emailInput"
+                name="email"
+                class="email-input"
+                placeholder="your@email.com"
+                required
+                autocomplete="email"
+                aria-required="true"
+                aria-describedby="emailNote"
+              />
+              <button type="submit" class="email-btn">Subscribe</button>
+            </div>
+            <p class="email-note" id="emailNote" role="status" aria-live="polite">
+              No spam. Unsubscribe anytime. We never sell your data.
+              See our <a href="privacy.html">Privacy Policy</a>.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Games -->
+  <section class="games-section section" id="games" aria-labelledby="games-heading">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">App Studio</p>
+        <h2 id="games-heading">Our Games</h2>
+        <p>History comes alive. Patriotic trivia and strategy games built for
+           American history lovers — with more titles on the way.</p>
+      </div>
+
+      <!-- Game card: 1776 Trivia -->
+      <article class="game-card" aria-label="1776 Trivia game">
+        <div>
+          <p class="game-badge">★ Now Available</p>
+          <h3>1776 Trivia</h3>
+          <p>
+            Celebrate 250 years of American independence with the ultimate
+            patriotic history quiz. 25 expertly crafted questions, timed
+            challenges, and five rating levels from History Learner to
+            Founding Father.
+          </p>
+          <div class="game-stats" role="list" aria-label="Game statistics">
+            <div class="game-stat" role="listitem">
+              <span class="game-stat-num">25+</span>
+              <span class="game-stat-label">Questions</span>
+            </div>
+            <div class="game-stat" role="listitem">
+              <span class="game-stat-num">5</span>
+              <span class="game-stat-label">Rating Tiers</span>
+            </div>
+            <div class="game-stat" role="listitem">
+              <span class="game-stat-num">Free</span>
+              <span class="game-stat-label">To Play</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="#" class="btn btn-primary" aria-label="Download 1776 Trivia on Google Play">
+              ★ Google Play
+            </a>
+            <a href="#" class="btn btn-secondary" aria-label="Download 1776 Trivia on App Store">
+              App Store →
+            </a>
+          </div>
+        </div>
+        <div class="game-visual" aria-hidden="true">
+          <div class="game-icon-box">
+            <svg class="game-icon-star" viewBox="0 0 100 100">
+              <defs>
+                <radialGradient id="gs" cx="38%" cy="28%" r="72%">
+                  <stop offset="0%" stop-color="#FFF8C0"/>
+                  <stop offset="40%" stop-color="#F5C518"/>
+                  <stop offset="100%" stop-color="#A87208"/>
+                </radialGradient>
+              </defs>
+              <polygon points="50,5 59,35 91,35 65,53 74,83 50,64 26,83 35,53 9,35 41,35"
+                fill="url(#gs)"/>
+              <polygon points="50,15 57,35 77,35 62,46 67,66 50,55 33,66 38,46 23,35 43,35"
+                fill="white" opacity="0.13"/>
+            </svg>
+            <p class="game-icon-title">1776<br>TRIVIA</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Coming soon card -->
+      <article class="game-card" aria-label="More games coming soon"
+               style="opacity:0.7; border-style: dashed;">
+        <div>
+          <p class="game-badge" style="color:var(--muted);border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04);">
+            Coming Soon
+          </p>
+          <h3 style="color:var(--muted);">More Titles in Development</h3>
+          <p>
+            New game genres are in development under the Dorchester Works
+            studio. Join the Patriot List to get early access and
+            launch-day notifications.
+          </p>
+          <a href="#contact" class="btn btn-secondary">Get Notified →</a>
+        </div>
+        <div class="game-visual" aria-hidden="true">
+          <div class="game-icon-box" style="border-style:dashed;opacity:0.5;">
+            <span style="font-size:3rem;">★</span>
+            <p class="game-icon-title" style="color:var(--muted);">Coming<br>Soon</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Boston quote -->
+  <div class="boston-bar" role="complementary" aria-label="Historical quote">
+    <div class="container">
+      <svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true"
+           style="margin:0 auto 20px;">
+        <polygon points="20,2 24,14 37,14 27,21 31,33 20,26 9,33 13,21 3,14 16,14"
+          fill="#F5C518" opacity="0.6"/>
+      </svg>
+      <blockquote>
+        "The world should never forget the spot where once stood
+        Liberty Tree, so famous in your annals."
+      </blockquote>
+      <cite>— Marquis de Lafayette, on Boston's Dorchester, 1825</cite>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section class="about-section section" id="about" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-aside">
+          <div class="about-shield" aria-hidden="true">
+            <svg class="about-shield-star" viewBox="0 0 120 120">
+              <defs>
+                <radialGradient id="as" cx="38%" cy="28%" r="72%">
+                  <stop offset="0%" stop-color="#FFF8C0"/>
+                  <stop offset="40%" stop-color="#F5C518"/>
+                  <stop offset="100%" stop-color="#A87208"/>
+                </radialGradient>
+              </defs>
+              <polygon points="60,6 71,42 109,42 79,63 90,99 60,77 30,99 41,63 11,42 49,42"
+                fill="url(#as)"/>
+              <polygon points="60,18 68,42 94,42 74,56 81,80 60,66 39,80 46,56 26,42 52,42"
+                fill="white" opacity="0.13"/>
+            </svg>
+            <p class="about-shield-name">Dorchester Works</p>
+            <p class="about-shield-sub">Dorchester Native · Est. 2026</p>
+          </div>
+        
+        </div>
+
+        <div class="about-content">
+          <div class="section-header" style="margin-bottom:28px;">
+            <p class="section-eyebrow">Our Story</p>
+            <h2 id="about-heading">From the Heights</h2>
+          </div>
+
+          <p>
+            Dorchester Works takes its name from Dorchester Heights — the
+            hill where General Washington secretly moved 2,000 troops under
+            cover of darkness on March 4, 1776, placing cannons that forced
+            the British to evacuate Boston without a single shot fired.
+            The bloodless victory. Strategy over brute force.
+          </p>
+          <p>
+            That's the philosophy behind every game we build. Premium
+            mobile experiences that out-market the competition — designed
+            with purpose, launched with precision, built to last.
+          </p>
+          <p>
+            Founded by a Dorchester native with an integrated marketing
+            degree and a deep passion for American history, Dorchester Works
+            is a mobile game studio celebrating 250 years of independence
+            one title at a time.
+          </p>
+
+          <div class="about-pillars" role="list" aria-label="Our core values">
+            <div class="pillar" role="listitem">
+              <svg class="pillar-star" width="20" height="20" viewBox="0 0 40 40"
+                   aria-hidden="true">
+                <polygon points="20,2 24,14 37,14 27,21 31,33 20,26 9,33 13,21 3,14 16,14"
+                  fill="#F5C518"/>
+              </svg>
+              <div class="pillar-text">
+                <h4>Strategy First</h4>
+                <p>Every game starts with a clear strategic objective —
+                   built to reach the right audience and monetize with
+                   purpose, not just hope.</p>
+              </div>
+            </div>
+            <div class="pillar" role="listitem">
+              <svg class="pillar-star" width="20" height="20" viewBox="0 0 40 40"
+                   aria-hidden="true">
+                <polygon points="20,2 24,14 37,14 27,21 31,33 20,26 9,33 13,21 3,14 16,14"
+                  fill="#F5C518"/>
+              </svg>
+              <div class="pillar-text">
+                <h4>Premium Quality</h4>
+                <p>Accessible design, legible typography, and WCAG 2.1 AA
+                   compliance across every product we ship.</p>
+              </div>
+            </div>
+            <div class="pillar" role="listitem">
+              <svg class="pillar-star" width="20" height="20" viewBox="0 0 40 40"
+                   aria-hidden="true">
+                <polygon points="20,2 24,14 37,14 27,21 31,33 20,26 9,33 13,21 3,14 16,14"
+                  fill="#F5C518"/>
+              </svg>
+              <div class="pillar-text">
+                <h4>Rooted in Dorchester</h4>
+                <p>Born and raised in Dorchester. The name honors its most
+                   historic moment — decisive, strategic, American — and
+                   that spirit runs through everything we build.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div>
+        <p class="footer-brand-name">
+          <svg width="24" height="24" viewBox="0 0 40 40" aria-hidden="true">
+            <polygon points="20,2 24,14 37,14 27,21 31,33 20,26 9,33 13,21 3,14 16,14"
+              fill="#F5C518"/>
+          </svg>
+          Dorchester Works
+        </p>
+        <p class="footer-brand-desc">
+          Mobile app game studio founded by a Dorchester native.
+          Celebrating 250 years of American independence —
+          one game at a time.
+        </p>
+        <p style="font-family:sans-serif;font-size:0.75rem;color:var(--faint);letter-spacing:1px;">
+          A Product of a Dorchester Native · Est. 2026
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#games">Our Games</a></li>
+          <li><a href="#">1776 Trivia — Google Play</a></li>
+          <li><a href="#">1776 Trivia — App Store</a></li>
+          <li><a href="#contact">Join the Patriot List</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        © 2026 Dorchester Works. All rights reserved.
+        A product of a Dorchester native.
+      </p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="privacy.html#terms">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Cookie banner -->
+<div class="cookie-banner" id="cookieBanner" role="dialog"
+     aria-labelledby="cookieTitle" aria-describedby="cookieDesc">
+  <p id="cookieDesc">
+    <strong id="cookieTitle" style="color:var(--white);">We use cookies</strong> —
+    only essential ones for site functionality and email subscriptions.
+    No tracking, no ads. See our
+    <a href="privacy.html">Privacy Policy</a>.
+  </p>
+  <button class="cookie-btn" onclick="acceptCookies()" aria-label="Accept cookies and close banner">
+    Got it
+  </button>
+</div>
+
+<!-- ── SCRIPTS ────────────────────────────────────────────────────────── -->
+<script>
+  // ── Star canvas ─────────────────────────────────────────────────────
+  (function() {
+    const canvas = document.getElementById('starCanvas');
+    const ctx    = canvas.getContext('2d');
+    let stars    = [];
+    let W, H;
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+
+    function initStars() {
+      stars = [];
+      const count = Math.floor((W * H) / 8000);
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x:   Math.random() * W,
+          y:   Math.random() * H,
+          r:   Math.random() * 1.5 + 0.3,
+          a:   Math.random(),
+          da:  (Math.random() * 0.003 + 0.001) * (Math.random() < 0.5 ? 1 : -1),
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      stars.forEach(s => {
+        s.a += s.da;
+        if (s.a > 1 || s.a < 0.1) s.da *= -1;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${s.a})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', () => { resize(); initStars(); });
+    resize();
+    initStars();
+    draw();
+  })();
+
+  // ── Mobile nav ──────────────────────────────────────────────────────
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+
+  // Close nav on link click
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ── Email form ──────────────────────────────────────────────────────
+  function handleEmailSubmit(e) {
+    e.preventDefault();
+    const note  = document.getElementById('emailNote');
+    const input = document.getElementById('emailInput');
+    // Replace with actual Mailchimp endpoint when ready
+    note.textContent = '★ You\'re on the list! Welcome to the Patriot List.';
+    note.style.color = '#6DD56D';
+    input.value = '';
+    input.disabled = true;
+  }
+
+  // ── Cookie banner ───────────────────────────────────────────────────
+  function acceptCookies() {
+    document.getElementById('cookieBanner').hidden = true;
+    try { localStorage.setItem('dw_cookies', '1'); } catch(e) {}
+  }
+
+  try {
+    if (localStorage.getItem('dw_cookies')) {
+      document.getElementById('cookieBanner').hidden = true;
+    }
+  } catch(e) {}
+
+  // ── Scroll-based nav bg ─────────────────────────────────────────────
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('.nav');
+    if (window.scrollY > 40) {
+      nav.style.background = 'rgba(2,9,24,0.98)';
+    } else {
+      nav.style.background = 'rgba(2,9,24,0.94)';
+    }
+  }, { passive: true });
+</script>
+
+<!-- Screen-reader only utility class -->
+<style>
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+</style>
+
+</body>
+</html>

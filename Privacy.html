@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Privacy Policy for Dorchester Works — our commitment to your data privacy and security."/>
+  <meta name="robots" content="noindex"/>
+  <meta name="theme-color" content="#020918"/>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"/>
+
+  <title>Privacy Policy — Dorchester Works</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #020918;
+      --navy2:   #0A1650;
+      --navy3:   #102070;
+      --crimson: #C41230;
+      --crimson2:#8F0A20;
+      --gold:    #FFD700;
+      --gold2:   #E5B800;
+      --white:   #FFFFFF;
+      --off:     #F5F0E8;
+      --muted:   rgba(245,240,232,0.82);
+      --faint:   rgba(245,240,232,0.45);
+      --max:     1160px;
+      --rad:     4px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      background-image: linear-gradient(160deg, #020918 0%, #0A1650 50%, #1A0A18 100%);
+      background-attachment: fixed;
+      color: var(--off);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: clamp(1rem, 2vw, 1.05rem);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .skip-nav {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--gold); color: var(--navy);
+      padding: 10px 20px; font-weight: 700;
+      border-radius: 0 0 4px 4px; z-index: 9999;
+      text-decoration: none; font-family: sans-serif;
+      font-size: 0.9rem; transition: top 0.2s;
+    }
+    .skip-nav:focus { top: 0; }
+
+    :focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(2,9,24,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,215,0,0.25);
+      padding: 0 clamp(20px,5vw,60px);
+      height: 72px;
+      display: flex; align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--white);
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-back {
+      font-family: sans-serif; font-size: 0.82rem;
+      letter-spacing: 1px; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* Page layout */
+    .page-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: clamp(48px,8vw,96px) clamp(20px,5vw,60px);
+    }
+
+    /* Header */
+    .page-header {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,215,0,0.22);
+    }
+
+    .page-header-eyebrow {
+      font-family: sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.75;
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+
+    .page-header-meta {
+      font-family: sans-serif;
+      font-size: 0.8rem;
+      color: var(--faint);
+      letter-spacing: 0.5px;
+    }
+
+    /* Table of contents */
+    .toc {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,215,0,0.2);
+      border-radius: 4px;
+      padding: 24px 28px;
+      margin-bottom: 48px;
+    }
+
+    .toc h2 {
+      font-family: sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    .toc ol {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .toc ol a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .toc ol a:hover { color: var(--gold); }
+
+    /* Content sections */
+    .policy-section {
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .policy-section:last-child { border-bottom: none; }
+
+    .policy-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 3vw, 1.7rem);
+      color: var(--white);
+      margin-bottom: 16px;
+      padding-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .policy-section h2 .section-num {
+      font-family: sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: var(--gold);
+      opacity: 0.7;
+      flex-shrink: 0;
+      padding: 3px 8px;
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 2px;
+    }
+
+    .policy-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--off);
+      margin: 24px 0 10px;
+    }
+
+    .policy-section p {
+      color: var(--muted);
+      margin-bottom: 14px;
+      max-width: 100%;
+      font-size: 0.95rem;
+      line-height: 1.85;
+    }
+
+    .policy-section ul, .policy-section ol {
+      padding-left: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .policy-section a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .policy-section a:hover { text-decoration: underline; }
+
+    /* Highlight box */
+    .highlight-box {
+      background: rgba(255,215,0,0.08);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 18px 22px;
+      margin: 20px 0;
+    }
+
+    .highlight-box p {
+      color: var(--off) !important;
+      font-size: 0.92rem !important;
+      margin: 0 !important;
+    }
+
+    /* Contact card */
+    .contact-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,215,0,0.22);
+      border-radius: 4px;
+      padding: 24px 28px;
+      margin-top: 20px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .contact-card a { color: var(--gold); }
+
+    /* Footer */
+    .page-footer {
+      background: rgba(0,0,0,0.3);
+      border-top: 1px solid rgba(255,215,0,0.2);
+      padding: 32px clamp(20px,5vw,60px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .page-footer p {
+      font-family: sans-serif;
+      font-size: 0.78rem;
+      color: var(--faint);
+    }
+
+    .page-footer a {
+      color: var(--faint);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .page-footer a:hover { color: var(--gold); }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-nav">Skip to main content</a>
+
+<!-- Nav -->
+<nav class="nav" role="navigation" aria-label="Site navigation">
+  <a href="index.html" class="nav-logo" aria-label="Dorchester Works home">
+    <svg width="28" height="28" viewBox="0 0 40 40" aria-hidden="true">
+      <defs>
+        <radialGradient id="pns" cx="40%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#FFFACC"/>
+          <stop offset="45%" stop-color="#FFD700"/>
+          <stop offset="100%" stop-color="#B8860A"/>
+        </radialGradient>
+      </defs>
+      <polygon points="20,2 24,14 37,14 27,21 31,33 20,26 9,33 13,21 3,14 16,14"
+        fill="url(#pns)"/>
+    </svg>
+    Dorchester <span>Works</span>
+  </a>
+  <a href="index.html" class="nav-back" aria-label="Back to homepage">
+    ← Back to Home
+  </a>
+</nav>
+
+<!-- Main content -->
+<main id="main">
+  <div class="page-wrap">
+
+    <!-- Page header -->
+    <header class="page-header">
+      <p class="page-header-eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="page-header-meta">
+        Last updated: May 17, 2026 ·
+        Effective date: May 17, 2026 ·
+        Version 1.0
+      </p>
+    </header>
+
+    <!-- Summary highlight -->
+    <div class="highlight-box" role="note" aria-label="Privacy summary">
+      <p>
+        <strong style="color:var(--gold);">The short version:</strong>
+        Dorchester Works collects minimal data, never sells it, never
+        shares it with advertisers, and gives you full control.
+        Our apps collect no personal data. Our website collects only
+        what you voluntarily provide for email subscriptions.
+      </p>
+    </div>
+
+    <!-- Table of contents -->
+    <nav class="toc" aria-label="Table of contents">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#who-we-are">1. Who We Are</a></li>
+        <li><a href="#data-we-collect">2. Data We Collect</a></li>
+        <li><a href="#how-we-use">3. How We Use Your Data</a></li>
+        <li><a href="#data-sharing">4. Data Sharing</a></li>
+        <li><a href="#cookies">5. Cookies</a></li>
+        <li><a href="#mobile-apps">6. Mobile Apps</a></li>
+        <li><a href="#childrens-privacy">7. Children's Privacy</a></li>
+        <li><a href="#your-rights">8. Your Rights (GDPR & CCPA)</a></li>
+        <li><a href="#data-security">9. Data Security</a></li>
+        <li><a href="#data-retention">10. Data Retention</a></li>
+        <li><a href="#changes">11. Changes to This Policy</a></li>
+        <li><a href="#contact-us">12. Contact Us</a></li>
+        <li><a href="#terms">13. Terms of Service</a></li>
+      </ol>
+    </nav>
+
+    <!-- Sections -->
+
+    <section class="policy-section" id="who-we-are"
+             aria-labelledby="s1-heading">
+      <h2 id="s1-heading">
+        <span class="section-num">01</span>
+        Who We Are
+      </h2>
+      <p>
+        Dorchester Works ("we," "us," "our") is a mobile app game studio
+        founded by a Dorchester native. We operate the website at
+        <strong>dorchesterworks.com</strong> and publish mobile applications
+        including <em>1776 Trivia — American History Quiz</em>.
+      </p>
+      <p>
+        For questions about this policy, contact us at:
+        <a href="mailto:privacy@dorchesterworks.com">privacy@dorchesterworks.com</a>
+      </p>
+    </section>
+
+    <section class="policy-section" id="data-we-collect"
+             aria-labelledby="s2-heading">
+      <h2 id="s2-heading">
+        <span class="section-num">02</span>
+        Data We Collect
+      </h2>
+
+      <h3>On our website (dorchesterworks.com)</h3>
+      <p>We collect data only when you voluntarily provide it:</p>
+      <ul>
+        <li><strong>Email address</strong> — when you subscribe to our newsletter
+            or Patriot List. This is the only personal data we actively collect.</li>
+      </ul>
+
+      <p>We may also collect limited technical data automatically:</p>
+      <ul>
+        <li>Approximate geographic location (country/region level only —
+            not precise location)</li>
+        <li>Browser type and operating system</li>
+        <li>Pages visited and time spent (via aggregate analytics only)</li>
+        <li>Referring website</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p>
+          We do not use invasive tracking, fingerprinting, cross-site tracking,
+          or behavioral advertising. We do not build profiles of individual users.
+        </p>
+      </div>
+
+      <h3>Information we do NOT collect</h3>
+      <ul>
+        <li>Payment or financial information (handled entirely by app stores)</li>
+        <li>Precise location data</li>
+        <li>Social media account information</li>
+        <li>Government-issued ID or sensitive personal data</li>
+        <li>Health or biometric data</li>
+      </ul>
+    </section>
+
+    <section class="policy-section" id="how-we-use"
+             aria-labelledby="s3-heading">
+      <h2 id="s3-heading">
+        <span class="section-num">03</span>
+        How We Use Your Data
+      </h2>
+      <p>We use the data we collect only for the following purposes:</p>
+      <ul>
+        <li>Sending email newsletters and updates you subscribed to</li>
+        <li>Responding to consulting inquiries and communications</li>
+        <li>Notifying you of new game launches and content updates
+            (only if you subscribed)</li>
+        <li>Improving our website and apps based on aggregate usage data</li>
+        <li>Complying with legal obligations</li>
+      </ul>
+      <p>
+        We never use your data for advertising targeting, selling leads,
+        or any purpose not listed above.
+      </p>
+    </section>
+
+    <section class="policy-section" id="data-sharing"
+             aria-labelledby="s4-heading">
+      <h2 id="s4-heading">
+        <span class="section-num">04</span>
+        Data Sharing
+      </h2>
+      <p>
+        <strong>We never sell your personal data.</strong> We share data
+        only in these limited circumstances:
+      </p>
+      <ul>
+        <li>
+          <strong>Email service provider</strong> — We use Mailchimp to
+          send newsletters. Your email address is stored in Mailchimp's
+          systems under their
+          <a href="https://mailchimp.com/legal/privacy/" target="_blank"
+             rel="noopener noreferrer">Privacy Policy</a>.
+        </li>
+        <li>
+          <strong>Hosting providers</strong> — Our website is hosted on
+          Netlify. Standard server logs may be retained by Netlify per
+          their
+          <a href="https://www.netlify.com/privacy/" target="_blank"
+             rel="noopener noreferrer">Privacy Policy</a>.
+        </li>
+        <li>
+          <strong>Legal requirements</strong> — We may disclose data if
+          required by law, court order, or to protect rights and safety.
+        </li>
+      </ul>
+      <p>
+        No other third parties receive your personal data.
+      </p>
+    </section>
+
+    <section class="policy-section" id="cookies"
+             aria-labelledby="s5-heading">
+      <h2 id="s5-heading">
+        <span class="section-num">05</span>
+        Cookies
+      </h2>
+      <p>
+        Our website uses only essential cookies — the minimum required
+        for the site to function:
+      </p>
+      <ul>
+        <li>
+          <strong>Cookie consent preference</strong> — remembers that you
+          have acknowledged our cookie notice (stored in localStorage,
+          not transmitted to any server).
+        </li>
+        <li>
+          <strong>Session functionality</strong> — standard browser cookies
+          for form submission security.
+        </li>
+      </ul>
+      <p>
+        We do not use advertising cookies, analytics tracking cookies,
+        social media tracking pixels, or any third-party marketing cookies.
+      </p>
+      <p>
+        You can disable cookies in your browser settings. Our website
+        will continue to function without them.
+      </p>
+    </section>
+
+    <section class="policy-section" id="mobile-apps"
+             aria-labelledby="s6-heading">
+      <h2 id="s6-heading">
+        <span class="section-num">06</span>
+        Mobile Apps
+      </h2>
+      <p>
+        Our mobile applications, including <em>1776 Trivia</em>, are
+        designed with a privacy-first approach:
+      </p>
+
+      <h3>Data collected by our apps</h3>
+      <ul>
+        <li><strong>No account required</strong> — you never create a
+            profile or provide personal information to play.</li>
+        <li><strong>No personal data collected</strong> — we do not
+            collect names, emails, phone numbers, or any identifying
+            information within our apps.</li>
+        <li><strong>Game progress</strong> — stored locally on your
+            device only. Never transmitted to our servers.</li>
+      </ul>
+
+      <h3>Third-party services in our apps</h3>
+      <p>
+        The free version of our apps includes advertising served by
+        <strong>Google AdMob</strong>. AdMob may collect device identifiers
+        and usage data to serve ads per Google's
+        <a href="https://policies.google.com/privacy" target="_blank"
+           rel="noopener noreferrer">Privacy Policy</a>.
+        You can opt out of personalized ads in your device settings.
+      </p>
+      <p>
+        Purchasing the <strong>Patriot Pass</strong> upgrade removes all
+        advertising and the associated data collection entirely.
+      </p>
+
+      <h3>In-app purchases</h3>
+      <p>
+        All payment processing is handled by Apple App Store or Google
+        Play Store. We never receive or store your payment information.
+      </p>
+    </section>
+
+    <section class="policy-section" id="childrens-privacy"
+             aria-labelledby="s7-heading">
+      <h2 id="s7-heading">
+        <span class="section-num">07</span>
+        Children's Privacy
+      </h2>
+      <p>
+        Our website and consulting services are directed at adults aged
+        18 and older. We do not knowingly collect personal information
+        from children under 13 (or under 16 in the European Economic Area).
+      </p>
+      <p>
+        Our mobile apps are rated <strong>Everyone (E)</strong> on Google
+        Play and are suitable for all ages. However, as noted above, our
+        apps do not collect any personal data from any users, including
+        children. This design choice ensures compliance with COPPA
+        (Children's Online Privacy Protection Act).
+      </p>
+      <p>
+        If you believe we have inadvertently collected information from
+        a child, please contact us immediately at
+        <a href="mailto:privacy@dorchesterworks.com">privacy@dorchesterworks.com</a>
+        and we will delete it promptly.
+      </p>
+    </section>
+
+    <section class="policy-section" id="your-rights"
+             aria-labelledby="s8-heading">
+      <h2 id="s8-heading">
+        <span class="section-num">08</span>
+        Your Rights (GDPR &amp; CCPA)
+      </h2>
+      <p>
+        Depending on where you live, you may have the following rights
+        regarding your personal data:
+      </p>
+
+      <h3>For all users</h3>
+      <ul>
+        <li><strong>Right to access</strong> — request a copy of the
+            data we hold about you.</li>
+        <li><strong>Right to deletion</strong> — request that we delete
+            your personal data.</li>
+        <li><strong>Right to correction</strong> — request correction
+            of inaccurate data.</li>
+        <li><strong>Right to unsubscribe</strong> — every email we send
+            includes an unsubscribe link. Click it to stop receiving
+            emails immediately.</li>
+      </ul>
+
+      <h3>For EU / EEA residents (GDPR)</h3>
+      <ul>
+        <li>Right to data portability</li>
+        <li>Right to restrict processing</li>
+        <li>Right to object to processing</li>
+        <li>Right to lodge a complaint with your local data protection authority</li>
+      </ul>
+      <p>
+        Our legal basis for processing email addresses is <strong>consent</strong>
+        — you provided your email voluntarily. You may withdraw consent
+        at any time by unsubscribing or contacting us.
+      </p>
+
+      <h3>For California residents (CCPA)</h3>
+      <ul>
+        <li>Right to know what personal information is collected and how
+            it is used</li>
+        <li>Right to delete personal information</li>
+        <li>Right to opt out of the sale of personal information
+            (we do not sell personal information)</li>
+        <li>Right to non-discrimination for exercising your rights</li>
+      </ul>
+
+      <p>
+        To exercise any of these rights, email us at
+        <a href="mailto:privacy@dorchesterworks.com">privacy@dorchesterworks.com</a>.
+        We will respond within 30 days.
+      </p>
+    </section>
+
+    <section class="policy-section" id="data-security"
+             aria-labelledby="s9-heading">
+      <h2 id="s9-heading">
+        <span class="section-num">09</span>
+        Data Security
+      </h2>
+      <p>
+        We take the security of your data seriously and implement
+        appropriate technical and organizational measures:
+      </p>
+      <ul>
+        <li><strong>HTTPS everywhere</strong> — all data transmitted
+            between your browser and our website is encrypted via TLS.</li>
+        <li><strong>Static site architecture</strong> — our website has
+            no database, no server-side login panel, and no SQL — the
+            smallest possible attack surface.</li>
+        <li><strong>Cloudflare protection</strong> — DDoS protection
+            and web application firewall at the network level.</li>
+        <li><strong>Minimal data collection</strong> — we can't lose
+            data we don't have. We collect the minimum necessary.</li>
+        <li><strong>Reputable processors</strong> — data is only handled
+            by established, security-certified providers (Mailchimp,
+            Netlify, Google).</li>
+      </ul>
+      <p>
+        No method of transmission over the internet is 100% secure.
+        If you become aware of any security vulnerability, please
+        notify us immediately at
+        <a href="mailto:security@dorchesterworks.com">security@dorchesterworks.com</a>.
+      </p>
+    </section>
+
+    <section class="policy-section" id="data-retention"
+             aria-labelledby="s10-heading">
+      <h2 id="s10-heading">
+        <span class="section-num">10</span>
+        Data Retention
+      </h2>
+      <p>We retain personal data only as long as necessary:</p>
+      <ul>
+        <li><strong>Email subscribers</strong> — retained until you
+            unsubscribe or request deletion.</li>
+        <li><strong>Server logs</strong> — retained by our hosting
+            provider per their standard policies (typically 30–90 days).</li>
+      </ul>
+      <p>
+        When data is no longer needed, we delete it or request its
+        deletion from our processors.
+      </p>
+    </section>
+
+    <section class="policy-section" id="changes"
+             aria-labelledby="s11-heading">
+      <h2 id="s11-heading">
+        <span class="section-num">11</span>
+        Changes to This Policy
+      </h2>
+      <p>
+        We may update this Privacy Policy from time to time. When we do,
+        we will update the "Last updated" date at the top of this page
+        and, for material changes, notify email subscribers directly.
+      </p>
+      <p>
+        We encourage you to review this policy periodically. Continued
+        use of our website or apps after changes constitutes acceptance
+        of the updated policy.
+      </p>
+    </section>
+
+    <section class="policy-section" id="contact-us"
+             aria-labelledby="s12-heading">
+      <h2 id="s12-heading">
+        <span class="section-num">12</span>
+        Contact Us
+      </h2>
+      <p>
+        For any privacy-related questions, requests, or concerns,
+        please contact us:
+      </p>
+      <div class="contact-card" role="region" aria-label="Contact information">
+        <p><strong style="color:var(--white);">Dorchester Works</strong></p>
+        <p>A product of a Dorchester native · Est. 2026</p>
+        <p>
+          Privacy inquiries:
+          <a href="mailto:privacy@dorchesterworks.com">
+            privacy@dorchesterworks.com
+          </a>
+        </p>
+        <p>
+          General contact:
+          <a href="mailto:hello@dorchesterworks.com">
+            hello@dorchesterworks.com
+          </a>
+        </p>
+        <p>
+          Security issues:
+          <a href="mailto:security@dorchesterworks.com">
+            security@dorchesterworks.com
+          </a>
+        </p>
+        <p style="margin-top:12px;font-size:0.85rem;color:var(--faint);">
+          Response time: within 30 days for privacy requests,
+          within 2 business days for general inquiries.
+        </p>
+      </div>
+    </section>
+
+    <!-- Terms of Service summary -->
+    <section class="policy-section" id="terms" aria-labelledby="s13-heading">
+      <h2 id="s13-heading">
+        <span class="section-num">13</span>
+        Terms of Service
+      </h2>
+      <p>
+        By using dorchesterworks.com or any Dorchester Works mobile
+        application, you agree to the following terms:
+      </p>
+
+      <h3>Use of our services</h3>
+      <ul>
+        <li>You must be 13 years of age or older to use our website
+            or provide your email address.</li>
+        <li>You agree not to use our services for any unlawful purpose.</li>
+        <li>You agree not to attempt to reverse-engineer, copy, or
+            redistribute our apps or website without permission.</li>
+      </ul>
+
+      <h3>Intellectual property</h3>
+      <p>
+        All content on dorchesterworks.com and within our apps —
+        including game code, graphics, questions, and branding —
+        is the property of Dorchester Works and protected by
+        applicable intellectual property laws.
+      </p>
+      <p>
+        "Dorchester Works," "1776 Trivia," and associated logos are
+        trademarks of Dorchester Works. The name "America 250" is not
+        used by Dorchester Works. Our products reference the 250th
+        anniversary of American independence in descriptive terms only.
+      </p>
+
+      <h3>Disclaimer of warranties</h3>
+      <p>
+        Our services are provided "as is" without warranties of any kind,
+        express or implied. We do not warrant that our services will be
+        uninterrupted, error-free, or completely secure.
+      </p>
+
+      <h3>Limitation of liability</h3>
+      <p>
+        To the maximum extent permitted by law, Dorchester Works shall
+        not be liable for any indirect, incidental, special, or
+        consequential damages arising from your use of our services.
+      </p>
+
+      <h3>Governing law</h3>
+      <p>
+        These terms are governed by the laws of the United States of America.
+        Any disputes shall be resolved in the jurisdiction where Dorchester
+        Works is legally registered.
+      </p>
+
+      <h3>Changes to terms</h3>
+      <p>
+        We reserve the right to update these terms at any time.
+        Continued use of our services constitutes acceptance of
+        updated terms. Last updated: May 17, 2026.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="page-footer" role="contentinfo">
+  <p>© 2026 Dorchester Works · A product of a Dorchester native</p>
+  <div style="display:flex;gap:20px;">
+    <a href="index.html">Home</a>
+    <a href="mailto:privacy@dorchesterworks.com">Privacy Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>

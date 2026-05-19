@@ -1,0 +1,62 @@
+# Dorchester Works — Netlify Configuration
+# Place this file in the root of your GitHub repository
+
+[build]
+  publish = "."
+
+# ── Security Headers ─────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevents MIME-type sniffing
+    X-Content-Type-Options = "nosniff"
+
+    # Prevents clickjacking
+    X-Frame-Options = "DENY"
+
+    # XSS protection for older browsers
+    X-XSS-Protection = "1; mode=block"
+
+    # Controls referrer information
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Permissions Policy — disable unnecessary browser features
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
+    # Content Security Policy
+    # Allows: self, Google Fonts, Mailchimp forms
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://us*.list-manage.com; frame-ancestors 'none';"
+
+    # HSTS — forces HTTPS for 1 year
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# ── Redirects ────────────────────────────────────────────────────────────────
+# Redirect www to non-www (update once domain is connected)
+[[redirects]]
+  from = "https://www.dorchesterworks.com/*"
+  to   = "https://dorchesterworks.com/:splat"
+  status = 301
+  force  = true
+
+# Redirect privacy shorthand
+[[redirects]]
+  from   = "/privacy"
+  to     = "/privacy.html"
+  status = 301
+
+# 404 fallback
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 404
+
+# ── Performance ──────────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
