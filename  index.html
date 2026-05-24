@@ -1069,15 +1069,21 @@
           </p>
         </div>
         <div>
-          <form class="email-form" action="#" method="post"
+          <form class="email-form"
+                action="https://app.kit.com/forms/9480736/subscriptions"
+                method="post"
+                target="_blank"
                 aria-label="Email signup form"
                 onsubmit="handleEmailSubmit(event)">
+            <!-- Honeypot — hidden from humans, bots fill this -->
+            <input type="text" name="_honeypot"
+                   style="display:none" tabindex="-1" autocomplete="off"/>
             <div class="email-row">
               <label for="emailInput" class="sr-only">Your email address</label>
               <input
                 type="email"
                 id="emailInput"
-                name="email"
+                name="email_address"
                 class="email-input"
                 placeholder="your@email.com"
                 required
@@ -1085,7 +1091,7 @@
                 aria-required="true"
                 aria-describedby="emailNote"
               />
-              <button type="submit" class="email-btn">Subscribe</button>
+              <button type="submit" class="email-btn">★ Join</button>
             </div>
             <p class="email-note" id="emailNote" role="status" aria-live="polite">
               No spam. Unsubscribe anytime. We never sell your data.
@@ -1427,16 +1433,41 @@
     });
   });
 
-  // ── Email form ──────────────────────────────────────────────────────
+  // ── Email form — Kit integration ────────────────────────────────────
   function handleEmailSubmit(e) {
-    e.preventDefault();
-    const note  = document.getElementById('emailNote');
-    const input = document.getElementById('emailInput');
-    // Replace with actual Mailchimp endpoint when ready
-    note.textContent = '★ You\'re on the list! Welcome to the Patriot List.';
+    const note     = document.getElementById('emailNote');
+    const input    = document.getElementById('emailInput');
+    const honeypot = document.querySelector('input[name="_honeypot"]');
+
+    // Reject bots
+    if (honeypot && honeypot.value) {
+      e.preventDefault();
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(input.value)) {
+      e.preventDefault();
+      note.textContent = 'Please enter a valid email address.';
+      note.style.color = '#FF7070';
+      return;
+    }
+
+    // Reject disposable email domains
+    const blocked = ['mailinator.com','tempmail.com','guerrillamail.com','throwam.com','yopmail.com'];
+    const domain  = input.value.split('@')[1].toLowerCase();
+    if (blocked.includes(domain)) {
+      e.preventDefault();
+      note.textContent = 'Please use a permanent email address.';
+      note.style.color = '#FF7070';
+      return;
+    }
+
+    // Show success — form submits to Kit in new tab
+    note.textContent = '★ You\'re on the list! Check your email to confirm.';
     note.style.color = '#6DD56D';
     input.value = '';
-    input.disabled = true;
   }
 
   // ── Cookie banner ───────────────────────────────────────────────────
