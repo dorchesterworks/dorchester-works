@@ -9,6 +9,10 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"/>
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23020918'/%3E%3Cdefs%3E%3CradialGradient id='sf' cx='38%25' cy='28%25' r='72%25'%3E%3Cstop offset='0%25' stop-color='%23FFFACC'/%3E%3Cstop offset='40%25' stop-color='%23FFD700'/%3E%3Cstop offset='100%25' stop-color='%23B8860A'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpolygon points='256,58 293,168 422,168 322,242 360,362 256,288 152,362 190,242 90,168 219,168' fill='url(%23sf)'/%3E%3Ctext x='256' y='424' text-anchor='middle' fill='%23FFD700' font-family='Georgia,serif' font-size='86' font-weight='900' letter-spacing='4'%3E1776%3C/text%3E%3C/svg%3E"/>
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23020918'/%3E%3Cdefs%3E%3CradialGradient id='sf' cx='38%25' cy='28%25' r='72%25'%3E%3Cstop offset='0%25' stop-color='%23FFFACC'/%3E%3Cstop offset='40%25' stop-color='%23FFD700'/%3E%3Cstop offset='100%25' stop-color='%23B8860A'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpolygon points='256,58 293,168 422,168 322,242 360,362 256,288 152,362 190,242 90,168 219,168' fill='url(%23sf)'/%3E%3Ctext x='256' y='424' text-anchor='middle' fill='%23FFD700' font-family='Georgia,serif' font-size='86' font-weight='900' letter-spacing='4'%3E1776%3C/text%3E%3C/svg%3E"/>
+
   <title>Privacy Policy — Dorchester Works</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -42,9 +46,13 @@
       background-attachment: fixed;
       color: var(--off);
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: clamp(1rem, 2vw, 1.05rem);
+      font-size: 1rem;
       line-height: 1.8;
       -webkit-font-smoothing: antialiased;
+    }
+
+    @media (min-width: 480px) {
+      body { font-size: clamp(1rem, 2vw, 1.05rem); }
     }
 
     .skip-nav {
@@ -63,24 +71,34 @@
       border-radius: 3px;
     }
 
-    /* Nav */
+    /* ── Nav — matches index mobile-first ───────────────────────────── */
     .nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(2,9,24,0.94);
+      position: sticky; top: 0;
+      z-index: 200;
+      background: rgba(2,9,24,0.96);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255,215,0,0.25);
-      padding: 0 clamp(20px,5vw,60px);
-      height: 72px;
+      padding: 0 20px;
+      height: 64px;
       display: flex; align-items: center;
       justify-content: space-between;
+      overflow: visible;
+    }
+
+    @media (min-width: 768px) {
+      .nav { padding: 0 clamp(20px,5vw,60px); height: 72px; }
     }
 
     .nav-logo {
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 8px;
       text-decoration: none;
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; font-weight: 700;
+      font-size: 1.05rem; font-weight: 700;
       color: var(--white);
+    }
+
+    @media (min-width: 768px) {
+      .nav-logo { font-size: 1.2rem; gap: 10px; }
     }
 
     .nav-logo span { color: var(--gold); }
@@ -90,21 +108,30 @@
       letter-spacing: 1px; color: var(--muted);
       text-decoration: none; transition: color 0.2s;
       display: flex; align-items: center; gap: 6px;
+      padding: 8px 0; min-height: 44px;
     }
     .nav-back:hover { color: var(--gold); }
 
-    /* Page layout */
+    /* ── Page layout — mobile first ─────────────────────────────────── */
     .page-wrap {
       max-width: 800px;
       margin: 0 auto;
-      padding: clamp(48px,8vw,96px) clamp(20px,5vw,60px);
+      padding: 36px 20px 60px;
+    }
+
+    @media (min-width: 480px) {
+      .page-wrap { padding: clamp(36px,6vw,96px) clamp(20px,5vw,60px); }
     }
 
     /* Header */
     .page-header {
-      margin-bottom: 48px;
-      padding-bottom: 32px;
+      margin-bottom: 36px;
+      padding-bottom: 28px;
       border-bottom: 1px solid rgba(255,215,0,0.22);
+    }
+
+    @media (min-width: 768px) {
+      .page-header { margin-bottom: 48px; padding-bottom: 32px; }
     }
 
     .page-header-eyebrow {
@@ -119,15 +146,15 @@
 
     .page-header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(1.8rem, 5vw, 3rem);
       color: var(--white);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       line-height: 1.15;
     }
 
     .page-header-meta {
       font-family: sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--faint);
       letter-spacing: 0.5px;
     }
@@ -137,8 +164,12 @@
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,215,0,0.2);
       border-radius: 4px;
-      padding: 24px 28px;
-      margin-bottom: 48px;
+      padding: 20px;
+      margin-bottom: 36px;
+    }
+
+    @media (min-width: 480px) {
+      .toc { padding: 24px 28px; margin-bottom: 48px; }
     }
 
     .toc h2 {
@@ -155,7 +186,7 @@
       padding-left: 20px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
     .toc ol a {
@@ -163,26 +194,34 @@
       font-size: 0.9rem;
       text-decoration: none;
       transition: color 0.2s;
+      padding: 2px 0;
+      display: inline-block;
     }
     .toc ol a:hover { color: var(--gold); }
 
     /* Content sections */
     .policy-section {
-      margin-bottom: 48px;
-      padding-bottom: 48px;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
+
+    @media (min-width: 768px) {
+      .policy-section { margin-bottom: 48px; padding-bottom: 48px; }
+    }
+
     .policy-section:last-child { border-bottom: none; }
 
     .policy-section h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.3rem, 3vw, 1.7rem);
+      font-size: clamp(1.2rem, 3vw, 1.7rem);
       color: var(--white);
       margin-bottom: 16px;
       padding-top: 8px;
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .policy-section h2 .section-num {
@@ -199,9 +238,9 @@
 
     .policy-section h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--off);
-      margin: 24px 0 10px;
+      margin: 20px 0 10px;
     }
 
     .policy-section p {
@@ -220,13 +259,10 @@
       margin-bottom: 14px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .policy-section a {
-      color: var(--gold);
-      text-decoration: none;
-    }
+    .policy-section a { color: var(--gold); text-decoration: none; }
     .policy-section a:hover { text-decoration: underline; }
 
     /* Highlight box */
@@ -234,8 +270,12 @@
       background: rgba(255,215,0,0.08);
       border-left: 3px solid var(--gold);
       border-radius: 0 4px 4px 0;
-      padding: 18px 22px;
+      padding: 16px 18px;
       margin: 20px 0;
+    }
+
+    @media (min-width: 480px) {
+      .highlight-box { padding: 18px 22px; }
     }
 
     .highlight-box p {
@@ -249,28 +289,42 @@
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,215,0,0.22);
       border-radius: 4px;
-      padding: 24px 28px;
+      padding: 20px;
       margin-top: 20px;
+    }
+
+    @media (min-width: 480px) {
+      .contact-card { padding: 24px 28px; }
     }
 
     .contact-card p {
       color: var(--muted);
       font-size: 0.9rem;
-      margin: 0;
+      margin: 0 0 6px;
+      line-height: 1.7;
     }
-
+    .contact-card p:last-child { margin-bottom: 0; }
     .contact-card a { color: var(--gold); }
 
-    /* Footer */
+    /* ── Footer — mobile first ───────────────────────────────────────── */
     .page-footer {
       background: rgba(0,0,0,0.3);
       border-top: 1px solid rgba(255,215,0,0.2);
-      padding: 32px clamp(20px,5vw,60px);
+      padding: 24px 20px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (min-width: 600px) {
+      .page-footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 32px clamp(20px,5vw,60px);
+      }
     }
 
     .page-footer p {
@@ -283,8 +337,15 @@
       color: var(--faint);
       text-decoration: none;
       transition: color 0.2s;
+      font-family: sans-serif;
+      font-size: 0.78rem;
     }
     .page-footer a:hover { color: var(--gold); }
+
+    .page-footer-links {
+      display: flex;
+      gap: 20px;
+    }
 
     @media (prefers-reduced-motion: reduce) {
       * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -325,9 +386,9 @@
       <p class="page-header-eyebrow">Legal</p>
       <h1>Privacy Policy</h1>
       <p class="page-header-meta">
-        Last updated: May 17, 2026 ·
+        Last updated: May 24, 2026 ·
         Effective date: May 17, 2026 ·
-        Version 1.0
+        Version 1.1
       </p>
     </header>
 
@@ -722,8 +783,8 @@
         </p>
         <p>
           General contact:
-          <a href="mailto:hello@dorchesterworks.com">
-            hello@dorchesterworks.com
+          <a href="mailto:hellodot@dorchesterworks.com">
+            hellodot@dorchesterworks.com
           </a>
         </p>
         <p>
@@ -798,7 +859,7 @@
       <p>
         We reserve the right to update these terms at any time.
         Continued use of our services constitutes acceptance of
-        updated terms. Last updated: May 17, 2026.
+        updated terms. Last updated: May 24, 2026.
       </p>
     </section>
 
@@ -808,7 +869,7 @@
 <!-- Footer -->
 <footer class="page-footer" role="contentinfo">
   <p>© 2026 Dorchester Works · A product of a Dorchester native</p>
-  <div style="display:flex;gap:20px;">
+  <div class="page-footer-links">
     <a href="index.html">Home</a>
     <a href="mailto:privacy@dorchesterworks.com">Privacy Contact</a>
   </div>
